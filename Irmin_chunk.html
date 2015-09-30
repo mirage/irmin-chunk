@@ -19,18 +19,18 @@ Managing Chunks.
 <p>
 
     This module exposes functors to store raw contents into
-    append-only stores as chunks of same size. It exposes the <a href="Irmin_chunk.AO.html"><code class="code"><span class="constructor">Irmin_chunk</span>.<span class="constructor">AO</span></code></a>
-    functor which split the raw contents into <code class="code"><span class="constructor">Data</span></code> blocks, addressed
-    by <code class="code"><span class="constructor">Node</span></code> blocks. That's the usual rope-like representation of
-    strings, but chunk trees are always build as perfectly
-    well-balanced and blocks are addressed by their hash (or by the
-    stable keys returned by the underlying store).
+    append-only stores as chunks of same size. It exposes the
+    <a href="Irmin_chunk.AO.html">AO</a> functor which split the raw contents into <code class="code"><span class="constructor">Data</span></code> blocks,
+    addressed by <code class="code"><span class="constructor">Node</span></code> blocks. That's the usual rope-like
+    representation of strings, but chunk trees are always build as
+    perfectly well-balanced and blocks are addressed by their hash (or
+    by the stable keys returned by the underlying store).
 <p>
 
     A chunk has the following structure:
 <p>
 
-<pre class="verbatim">     --------------------------
+    <pre class="verbatim">     --------------------------
      | uint8_t type            |
      ---------------------------
      | uint16_t length         |
@@ -44,10 +44,11 @@ Managing Chunks.
     of children that the node has.
 <p>
 
-    It also exposes <a href="Irmin_chunk.AO_stable.html"><code class="code"><span class="constructor">Irmin_chunk</span>.<span class="constructor">AO_stable</span></code></a> which -- as <a href="Irmin_chunk.AO.html"><code class="code"><span class="constructor">Irmin_chunk</span>.<span class="constructor">AO</span></code></a> does -- stores raw
-    contents into chunks of same size. But it also preserves the nice
-    properpty that values are addressed by their hash. instead of by
-    the hash of the root chunk node as it is the case for <a href="Irmin_chunk.AO.html"><code class="code"><span class="constructor">Irmin_chunk</span>.<span class="constructor">AO</span></code></a>.<br>
+    It also exposes <a href="Irmin_chunk.AO_stable.html">AO_stable</a> which -- as <a href="Irmin_chunk.AO.html">AO</a> does
+    -- stores raw contents into chunks of same size. But it also
+    preserves the nice properpty that values are addressed by their
+    hash. instead of by the hash of the root chunk node as it is the
+    case for <a href="Irmin_chunk.AO.html">AO</a>.<br>
 </div>
 <hr width="100%">
 
@@ -60,7 +61,7 @@ Managing Chunks.
 <pre><span id="VALconfig"><span class="keyword">val</span> config</span> : <code class="type">?config:Irmin.config -> ?size:int -> ?min_size:int -> unit -> Irmin.config</code></pre><div class="info ">
 <code class="code">config ?config ?size ?min_size ()</code> is the configuration value
     extending the optional <code class="code">config</code> with bindings associating
-    <a href="Irmin_chunk.html#VALchunk_size"><code class="code"><span class="constructor">Irmin_chunk</span>.chunk_size</code></a> to <code class="code">size</code>.
+    <a href="Irmin_chunk.html#VALchunk_size">chunk_size</a> to <code class="code">size</code>.
 <p>
 
     Fail with <code class="code"><span class="constructor">Invalid_argument</span></code> if <code class="code">size</code> is smaller than <code class="code">min_size</code>.
