@@ -18,25 +18,37 @@
 Managing Chunks.
 <p>
 
-     All functions for manipulate chunks representation, a chunk is
-     represented as above :
+     This module exposes functors to store raw contents into
+     append-only stores as chunks of same size. It exposes the <a href="Irmin_chunk.AO.html"><code class="code"><span class="constructor">Irmin_chunk</span>.<span class="constructor">AO</span></code></a>
+     functor which split the raw contents into <code class="code"><span class="constructor">Data</span></code> blocks,
+     addressed by <code class="code"><span class="constructor">Node</span></code> blocks. That's the usual rope-like
+     representation of strings, but chunk trees are always build as
+     perfectly well-balanced and blocks are addressed by their hash
+     (or by the stable keys returned by the underlying store).
 <p>
 
-<pre class="verbatim">     --------------------------
+    A chunk has the following structure:
+<p>
+
+    <pre class="verbatim">     --------------------------
      | uint8_t type            |
      ---------------------------
      | uint16_t length         |
      ---------------------------
      | byte data[length]       |
      ---------------------------</pre>
-     Where <code class="code"><span class="keyword">type</span></code> define if the chunk contains raw data or is a node
-     and <code class="code">length</code> is the <code class="code">data</code> payload's length.<br>
+<p>
+
+     <code class="code"><span class="keyword">type</span></code> is either <code class="code"><span class="constructor">Data</span></code> (0) or <code class="code"><span class="constructor">Node</span></code> (1). If the chunk contains
+     data, <code class="code">length</code> is the payload length. Otherwise it is the number
+     of children that the node has.<br>
 </div>
 <hr width="100%">
 
 <pre><span id="VALchunk_size"><span class="keyword">val</span> chunk_size</span> : <code class="type">int Irmin.Private.Conf.key</code></pre><div class="info ">
-The key to configure the size of chunks. By default, it is set to
-    4666 (to let some space for metadata).<br>
+<code class="code">chunk_size</code> is the configuration key to configure chunks'
+    size. By default, it is set to 4666, so that payload and metadata
+    can be stored in a 4K block.<br>
 </div>
 
 <pre><span id="VALconfig"><span class="keyword">val</span> config</span> : <code class="type">?config:Irmin.config -> ?size:int -> ?min_size:int -> unit -> Irmin.config</code></pre><div class="info ">
