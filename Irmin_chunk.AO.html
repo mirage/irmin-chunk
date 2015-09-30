@@ -18,15 +18,18 @@
 
 <pre><span class="keyword">module</span> AO <code class="code">(</code><code class="code"><span class="constructor">S</span></code><code class="code"> : </code><code class="type">Irmin.AO_MAKER_RAW</code><code class="code">) </code>: <code class="type">Irmin.AO_MAKER_RAW</code><code class="type"> </code></pre><div class="info module top">
 <code class="code"><span class="constructor">AO</span>(<span class="constructor">X</span>)</code> is an append-only store which store values cut into chunks
-    into the underlying store <code class="code"><span class="constructor">X</span></code>. The keys returns by <code class="code">add</code> are the
-    hash of the chunked values: it could either be a full block if the
-    value is small, or a tree node if the values need to be cut into
-    chunks.
+    into the underlying store <code class="code"><span class="constructor">X</span></code>.
+<p>
+
+    The keys returns by <code class="code">add</code> are the hash of the chunked values: it could
+    either be a full block if the value is small, or a tree node if
+    the values need to be cut into chunks.
 <p>
 
     In both case, the return hash will be different from the hash of
-    the value. This discrepency can be fixed using the an
-    immutable link store.<br>
+    the value. This discrepency can be fixed using
+    <a href="Irmin_chunk.AO_stable.html">AO_stable</a>, at the cost of adding an indirection on
+    reads.<br>
 </div>
 <table border="0" cellpadding="3" width="100%">
 <tr>
