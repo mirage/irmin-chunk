@@ -41,7 +41,13 @@ Managing Chunks.
 
     <code class="code"><span class="keyword">type</span></code> is either <code class="code"><span class="constructor">Data</span></code> (0) or <code class="code"><span class="constructor">Node</span></code> (1). If the chunk contains
     data, <code class="code">length</code> is the payload length. Otherwise it is the number
-    of children that the node has.<br>
+    of children that the node has.
+<p>
+
+    It also exposes <a href="Irmin_chunk.AO_stable.html"><code class="code"><span class="constructor">Irmin_chunk</span>.<span class="constructor">AO_stable</span></code></a> which -- as <a href="Irmin_chunk.AO.html"><code class="code"><span class="constructor">Irmin_chunk</span>.<span class="constructor">AO</span></code></a> does -- stores raw
+    contents into chunks of same size. But it also preserves the nice
+    properpty that values are addressed by their hash. instead of by
+    the hash of the root chunk node as it is the case for <a href="Irmin_chunk.AO.html"><code class="code"><span class="constructor">Irmin_chunk</span>.<span class="constructor">AO</span></code></a>.<br>
 </div>
 <hr width="100%">
 
